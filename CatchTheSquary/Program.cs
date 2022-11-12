@@ -12,39 +12,22 @@ namespace CatchTheSquary
 {
     class Program
     {
-        public static Random Random = new Random();
+        
         static void Main(string[] args)
         {
             RenderWindow window = new RenderWindow(new VideoMode(800, 600), "Game");
             window.Closed += Window_Closed;
             window.SetFramerateLimit(60);
 
-            List<Square> squares = new List<Square>();
-            squares.Add( new PlayerSquare(new Vector2f(100, 100), 10, new IntRect(0, 0, 800, 600 )) );
-            squares.Add(new PlayerSquare(new Vector2f(100, 100), 10, new IntRect(0, 0, 800, 600)));
-            squares.Add(new PlayerSquare(new Vector2f(100, 100), 10, new IntRect(0, 0, 800, 600)));
-            squares.Add(new EnemySquare(new Vector2f(200, 100), 10, new IntRect(0, 0, 800, 600)));
-
-
+            Game game = new Game();
+            
             while (window.IsOpen == true)
             {
                 window.Clear(new Color(230, 230, 230));
                 
                 window.DispatchEvents();
 
-                if (Mouse.IsButtonPressed(Mouse.Button.Left) == true)
-                {
-                    for (int i = 0; i < squares.Count; i++)
-                    {
-                        squares[i].CheckMousePosition(Mouse.GetPosition(window));
-                    }
-                }
-
-                for (int i = 0; i < squares.Count; i++)
-                {
-                    squares[i].Move();
-                    squares[i].Draw(window);
-                }
+                game.Update(window);
 
                 window.Display();
             }

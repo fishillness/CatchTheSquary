@@ -31,17 +31,7 @@ namespace CatchTheSquary
 
         public void Move()
         {
-            Vector2f dir = movementTarget - shape.Position;
-            float magnitude = (float)Math.Sqrt(dir.X * dir.X + dir.Y * dir.Y);
-
-            if (magnitude <= movementSpeed)
-            {
-                shape.Position = movementTarget;
-            }
-            else
-            {
-                shape.Position += dir / magnitude * movementSpeed;
-            }
+            shape.Position = Mathf.MoveTowards(shape.Position, movementTarget, movementSpeed);
 
             if (shape.Position == movementTarget)
             {
@@ -65,8 +55,8 @@ namespace CatchTheSquary
         }
         protected void UpdateMovementTarget()
         {
-            movementTarget.X = Program.Random.Next(movementBounds.Left, movementBounds.Left + movementBounds.Width);
-            movementTarget.Y = Program.Random.Next(movementBounds.Top, movementBounds.Top + movementBounds.Height);
+            movementTarget.X = Mathf.Random.Next(movementBounds.Left, movementBounds.Left + movementBounds.Width);
+            movementTarget.Y = Mathf.Random.Next(movementBounds.Top, movementBounds.Top + movementBounds.Height);
         }
 
         protected virtual void OnClick() { }
