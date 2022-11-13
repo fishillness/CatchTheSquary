@@ -59,6 +59,8 @@
     <Compile Include="Mathf.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Square\Circle.cs" />
     <Compile Include="Square\EnemySquare.cs" />
     <Compile Include="Square\PlayerSquare.cs" />
     <Compile Include="Square\Square.cs" />

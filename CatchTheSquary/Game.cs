@@ -14,7 +14,7 @@ namespace CatchTheSquary
         public static int Scores;
         public static bool Islost;
 
-        private Font mainFont;
+        //private Font mainFont;
         private Text scoreText;
         private Text loseText;
 
@@ -22,17 +22,17 @@ namespace CatchTheSquary
         private int MaxScores;
         public Game()
         {
-            mainFont = new Font("comic.ttf");
+            //mainFont = new Font("comic.ttf");
             squares = new SquaresList();
 
             scoreText = new Text();
-            scoreText.Font = mainFont;
+            scoreText.Font = Program.mainFont;
             scoreText.FillColor = Color.Black;
             scoreText.CharacterSize = 16;
             scoreText.Position = new Vector2f(10, 10);
 
             loseText = new Text();
-            loseText.Font = mainFont;
+            loseText.Font = Program.mainFont;
             loseText.FillColor = Color.Black;
             loseText.DisplayedString = "Ты проиграл! Нажми R, чтобы перезапустить игру!";
             loseText.Position = new Vector2f(20, 290);
@@ -58,6 +58,11 @@ namespace CatchTheSquary
 
                 if (Keyboard.IsKeyPressed(Keyboard.Key.R) == true)
                 {
+                    Reset();
+                }
+                if (Keyboard.IsKeyPressed(Keyboard.Key.S) == true)
+                {
+                    Program.typeWindow = "settings";
                     Reset();
                 }
             }

@@ -22,13 +22,15 @@ namespace CatchTheSquary
         protected override void OnClick()
         {
             Game.Scores++;
-            shape.Size -= new Vector2f(SizeStep, SizeStep);
+            
+                shape.Size -= new Vector2f(SizeStep, SizeStep);
 
-            if (shape.Size.X < MaxSize)
-            {
-                isActive = false;
-                return;
-            }
+                if (shape.Size.X < MaxSize)
+                {
+                    isActive = false;
+                    return;
+                }
+            
 
             UpdateMovementTarget();
             shape.Position = movementTarget;
