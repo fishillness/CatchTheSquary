@@ -48,10 +48,12 @@ namespace CatchTheSquary
                 case "square":
                     squares.Reset();
                     squares.SpawnPlayerSquary();
+                    squares.SpawnPlayerSquary();
                     squares.SpawnEnemySquary();
                     break;
                 case "circle":
                     circles.Reset();
+                    circles.SpawnPlayerCircle();
                     circles.SpawnPlayerCircle();
                     circles.SpawnEnemyCircle();
                     break;
@@ -123,17 +125,3 @@ namespace CatchTheSquary
 
     }
 }
-
-
-/*
-  switch (Settings.TypeFigure)
-            {
-                case "square":
-
-                    break;
-                case "circle":
-
-                    break;
-            }
-
-*/

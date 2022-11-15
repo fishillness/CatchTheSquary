@@ -43,8 +43,8 @@ namespace CatchTheSquary
         {
             if (isActive == false) return;
 
-            if (mousePos.X > shape.Position.X && mousePos.X < shape.Position.X + shape.Radius &&
-                mousePos.Y > shape.Position.Y && mousePos.Y < shape.Position.Y + shape.Radius)
+            if (mousePos.X > shape.Position.X - shape.Radius && mousePos.X < shape.Position.X + shape.Radius &&
+                mousePos.Y > shape.Position.Y - shape.Radius && mousePos.Y < shape.Position.Y + shape.Radius)
                 OnClick();
         }
         public void Draw(RenderWindow win)
