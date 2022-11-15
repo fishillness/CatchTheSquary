@@ -16,11 +16,13 @@ namespace CatchTheSquary
 
         private SquaresList squares;
         private CirclesList circles;
+        private SpriteList sprites;
         private int MaxScores;
         public Game()
         {
             squares = new SquaresList();
             circles = new CirclesList();
+            sprites = new SpriteList();
 
             scoreText = new Text();
             scoreText.Font = Program.mainFont;
@@ -54,6 +56,12 @@ namespace CatchTheSquary
                     circles.SpawnPlayerCircle();
                     circles.SpawnPlayerCircle();
                     circles.SpawnEnemyCircle();
+                    break;
+                case "sprite":
+                    sprites.Reset();
+                    sprites.SpawnPlayerSprite();
+                    sprites.SpawnPlayerSprite();
+                    sprites.SpawnEnemySprite();
                     break;
             }
 
@@ -107,6 +115,7 @@ namespace CatchTheSquary
                         }
 
                         break;
+
                     case "circle":
                         if (circles.GetCount() == 0)
                         {
@@ -122,7 +131,7 @@ namespace CatchTheSquary
                                 circles.SpawnPlayerCircle();
                             }
 
-                            if (Mathf.Random.Next(0, 2) == 1)
+                            if (Mathf.Random.Next(0, 3) == 1)
                             {
                                 circles.SpawnBonusSquary();
                             }
@@ -133,6 +142,35 @@ namespace CatchTheSquary
                         {
                             circles.ReturnDefaultSizeEnemyCircle();
                             BonusCircle.IsGet = false;
+                        }
+                        break;
+
+                    case "sprite":
+                        if (sprites.GetCount() == 0)
+                        {
+                            Reset();
+                        }
+
+                        sprites.Update(win);
+
+                        if (sprites.SpriteHasRemoved == true)
+                        {
+                            if (sprites.RemovedSprite is PlayerSprite)
+                            {
+                                sprites.SpawnPlayerSprite();
+                            }
+
+                            if (Mathf.Random.Next(0, 3) == 1)
+                            {
+                                sprites.SpawnBonusSprite();
+                            }
+                        }
+
+
+                        if (BonusSprite.IsGet == true)
+                        {
+                            sprites.ReturnDefaultSizeEnemySprite();
+                            BonusSprite.IsGet = false;
                         }
                         break;
                 }

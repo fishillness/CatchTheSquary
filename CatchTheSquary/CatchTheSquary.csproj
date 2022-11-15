@@ -65,6 +65,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Circle\Circle.cs" />
+    <Compile Include="Sprite\BonusSprite.cs" />
+    <Compile Include="Sprite\EnemySprite.cs" />
+    <Compile Include="Sprite\PlayerSprite.cs" />
+    <Compile Include="Sprite\SpriteF.cs" />
+    <Compile Include="Sprite\SpriteList.cs" />
     <Compile Include="Square\BonusSquare.cs" />
     <Compile Include="Square\EnemySquare.cs" />
     <Compile Include="Square\PlayerSquare.cs" />

@@ -3,19 +3,32 @@ using SFML.System;
 
 namespace CatchTheSquary
 {
-    public class Square
+    class SpriteF
     {
-        public static Vector2f DefaultSize = new Vector2f(100, 100);
+
+        protected static Texture playerBall128 = new Texture("ball-128.png");
+        protected static Texture playerBall64 = new Texture("ball-64.png");
+        protected static Texture playerBall32 = new Texture("ball-32.png");
+        protected static Texture playerBall24 = new Texture("ball-24.png");
+
+        protected static Texture enemyBall128 = new Texture("enemyBall-128.png");
+        protected static Texture enemyBall64 = new Texture("enemyBall-64.png");
+        protected static Texture enemyBall32= new Texture("enemyBall-32.png");
+
+        protected static Texture bonusBall = new Texture("bonusBall.png");
+
 
         public bool isActive = true;
-        protected RectangleShape shape;
+        protected Sprite shape;
+        protected int size;
+
         protected float movementSpeed;
         protected Vector2f movementTarget;
         protected IntRect movementBounds;
 
-        public Square(Vector2f position, float movementSpeed, IntRect movementBounds)
+        public SpriteF(Vector2f position, float movementSpeed, IntRect movementBounds)
         {
-            shape = new RectangleShape(DefaultSize);
+            shape = new Sprite(playerBall128);
             shape.Position = position;
 
             this.movementSpeed = movementSpeed;
@@ -38,8 +51,8 @@ namespace CatchTheSquary
         {
             if (isActive == false) return;
 
-            if (mousePos.X > shape.Position.X && mousePos.X < shape.Position.X + shape.Size.X &&
-                mousePos.Y > shape.Position.Y && mousePos.Y < shape.Position.Y + shape.Size.Y)
+            if (mousePos.X > shape.Position.X && mousePos.X < shape.Position.X + shape.TextureRect.Width &&
+                mousePos.Y > shape.Position.Y && mousePos.Y < shape.Position.Y + shape.TextureRect.Height)
                 OnClick();
         }
         public void Draw(RenderWindow win)
@@ -55,7 +68,7 @@ namespace CatchTheSquary
         }
         public void ReturnDefaultSize()
         {
-            shape.Size = DefaultSize;
+            size = EnemySprite.DefaultSize;
         }
 
         protected virtual void OnClick() { }
