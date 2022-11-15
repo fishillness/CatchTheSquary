@@ -1,6 +1,6 @@
-﻿using SFML.System;
+﻿using System;
+using SFML.System;
 using SFML.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace CatchTheSquary
 {
-    public class PlayerSquare : Square
+    class PlayerCircle : Circle
     {
         private static Color Color = new Color(50, 50, 50);
         private static float SizeStep = 10;
         private static float MaxSize = 20;
-        public PlayerSquare(Vector2f position, float movementSpeed, IntRect movementBounds) : 
-            base(position, movementSpeed, movementBounds) 
+        public PlayerCircle(Vector2f position, float movementSpeed, IntRect movementBounds) :
+            base(position, movementSpeed, movementBounds)
         {
             shape.FillColor = Color;
         }
@@ -22,15 +22,14 @@ namespace CatchTheSquary
         protected override void OnClick()
         {
             Game.Scores++;
-            
-                shape.Size -= new Vector2f(SizeStep, SizeStep);
 
-                if (shape.Size.X < MaxSize)
-                {
-                    isActive = false;
-                    return;
-                }
+            shape.Radius -= SizeStep;
             
+            if (shape.Radius < MaxSize)
+            {
+                isActive = false;
+                return;
+            }
 
             UpdateMovementTarget();
             shape.Position = movementTarget;

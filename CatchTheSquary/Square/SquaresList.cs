@@ -62,5 +62,9 @@ namespace CatchTheSquary
         {
             squares.Add(new EnemySquare(new Vector2f(Mathf.Random.Next(0, 800), Mathf.Random.Next(0, 600)), 5, new IntRect(0, 0, 800, 600)));
         }
+        public int GetCount()
+        {
+            return squares.Count;
+        }
     }
 }

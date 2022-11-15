@@ -14,16 +14,16 @@ namespace CatchTheSquary
         public static int Scores;
         public static bool Islost;
 
-        //private Font mainFont;
         private Text scoreText;
         private Text loseText;
 
         private SquaresList squares;
+        private CirclesList circles;
         private int MaxScores;
         public Game()
         {
-            //mainFont = new Font("comic.ttf");
             squares = new SquaresList();
+            circles = new CirclesList();
 
             scoreText = new Text();
             scoreText.Font = Program.mainFont;
@@ -41,12 +41,22 @@ namespace CatchTheSquary
         }
         private void Reset()
         {
-            squares.Reset();
             Scores = 0;
             Islost = false;
+            switch (Program.TypeFigure)
+            {
+                case "square":
+                    squares.Reset();
+                    squares.SpawnPlayerSquary();
+                    squares.SpawnEnemySquary();
+                    break;
+                case "circle":
+                    circles.Reset();
+                    circles.SpawnPlayerCircle();
+                    circles.SpawnEnemyCircle();
+                    break;
+            }
 
-            squares.SpawnPlayerSquary();
-            squares.SpawnEnemySquary();
         }
         public void Update(RenderWindow win)
         {
@@ -68,18 +78,41 @@ namespace CatchTheSquary
             }
             if (Islost == false)
             {
-                squares.Update(win);
-
-                if (squares.SquareHasRemoved == true)
+                switch (Program.TypeFigure)
                 {
-                    if (squares.RemovedSquare is PlayerSquare)
-                    {
-                        squares.SpawnPlayerSquary();
-                    }
-                    /*if (squares.RemovedSquare is EnemySquare)
-                     {
-                        squares.SpawnEnemySquary();
-                    }*/
+                    case "square":
+
+
+                        squares.Update(win);
+
+                        if (squares.SquareHasRemoved == true)
+                        {
+                            if (squares.RemovedSquare is PlayerSquare)
+                            {
+                                squares.SpawnPlayerSquary();
+                            }
+                            /*if (squares.RemovedSquare is EnemySquare)
+                             {
+                                squares.SpawnEnemySquary();
+                            }*/
+                        }
+                        break;
+                    case "circle":
+                        if (circles.GetCount() == 0)
+                        {
+                            Reset();
+                        }
+
+                        circles.Update(win);
+
+                        if (circles.CircleHasRemoved == true)
+                        {
+                            if (circles.RemovedCircle is PlayerCircle)
+                            {
+                                circles.SpawnPlayerCircle();
+                            }
+                        }
+                        break;
                 }
             }
 
@@ -90,3 +123,17 @@ namespace CatchTheSquary
 
     }
 }
+
+
+/*
+  switch (Settings.TypeFigure)
+            {
+                case "square":
+
+                    break;
+                case "circle":
+
+                    break;
+            }
+
+*/

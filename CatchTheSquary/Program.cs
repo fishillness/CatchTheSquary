@@ -12,14 +12,22 @@ namespace CatchTheSquary
 {
     class Program
     {
+
+        public static string TypeFigure;
         public static Font mainFont;
         public static string typeWindow;
+
+
+
         static void Main(string[] args)
         {
             RenderWindow window = new RenderWindow(new VideoMode(800, 600), "Game");
             window.Closed += Window_Closed;
             window.SetFramerateLimit(60);
             mainFont = new Font("comic.ttf");
+
+
+            TypeFigure = "square";
 
             Game game = new Game();
             Settings settings = new Settings();

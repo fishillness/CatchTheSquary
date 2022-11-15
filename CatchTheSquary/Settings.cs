@@ -11,7 +11,6 @@ namespace CatchTheSquary
 {
     public class Settings
     {
-        public static string TypeFigure;
         private static uint textSize = 16;
 
         private Text nameWindow;
@@ -22,7 +21,6 @@ namespace CatchTheSquary
 
         public Settings()
         {
-            TypeFigure = "square";
 
             nameWindow = new Text();
             nameWindow.Font = Program.mainFont;
@@ -69,7 +67,7 @@ namespace CatchTheSquary
                 circleType.FillColor = Color.Black;
                 spriteType.FillColor = Color.Black;
 
-                TypeFigure = "square";
+                Program.TypeFigure = "square";
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.W) == true)
             {
@@ -77,7 +75,7 @@ namespace CatchTheSquary
                 circleType.FillColor = Color.Red;
                 spriteType.FillColor = Color.Black;
 
-                TypeFigure = "circle";
+                Program.TypeFigure = "circle";
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.E) == true)
             {
@@ -85,7 +83,7 @@ namespace CatchTheSquary
                 circleType.FillColor = Color.Black;
                 spriteType.FillColor = Color.Red;
 
-                TypeFigure = "sprite";
+                Program.TypeFigure = "sprite";
             }
         }
     }
