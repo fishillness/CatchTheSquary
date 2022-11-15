@@ -1,11 +1,6 @@
 ﻿using SFML.Window;
 using SFML.System;
 using SFML.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CatchTheSquary
 {
@@ -83,7 +78,10 @@ namespace CatchTheSquary
                 switch (Program.TypeFigure)
                 {
                     case "square":
-
+                        if (squares.GetCount() == 0)
+                        {
+                            Reset();
+                        }
 
                         squares.Update(win);
 
@@ -93,11 +91,18 @@ namespace CatchTheSquary
                             {
                                 squares.SpawnPlayerSquary();
                             }
-                            /*if (squares.RemovedSquare is EnemySquare)
-                             {
-                                squares.SpawnEnemySquary();
-                            }*/
+                            if (Mathf.Random.Next(0, 3) == 1)
+                            {
+                                squares.SpawnBonusSquary();
+                            }
                         }
+
+                        if (BonusSquare.IsGet == true)
+                        {
+                            squares.ReturnDefaultSizeEnemySquare();
+                            BonusSquare.IsGet = false;
+                        }
+
                         break;
                     case "circle":
                         if (circles.GetCount() == 0)
@@ -113,6 +118,18 @@ namespace CatchTheSquary
                             {
                                 circles.SpawnPlayerCircle();
                             }
+
+                            if (Mathf.Random.Next(0, 2) == 1)
+                            {
+                                circles.SpawnBonusSquary();
+                            }
+                        }
+
+
+                        if (BonusCircle.IsGet == true)
+                        {
+                            circles.ReturnDefaultSizeEnemyCircle();
+                            BonusCircle.IsGet = false;
                         }
                         break;
                 }
@@ -121,7 +138,5 @@ namespace CatchTheSquary
             scoreText.DisplayedString = $"Score: {Scores.ToString()} \nMax: {MaxScores.ToString()}";
             win.Draw(scoreText);
         }
-
-
     }
 }

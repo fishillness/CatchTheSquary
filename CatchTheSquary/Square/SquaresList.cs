@@ -1,16 +1,16 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CatchTheSquary
 {
-    public class SquaresList 
+    public class SquaresList
     {
+        private static int MovementSpeed = 5;
+        private static int windowWidth = 800;
+        private static int windowHeight = 600;
+
         private List<Square> squares;
         public bool SquareHasRemoved;
         public Square RemovedSquare;
@@ -56,15 +56,35 @@ namespace CatchTheSquary
 
         public void SpawnPlayerSquary()
         {
-            squares.Add(new PlayerSquare(new Vector2f(Mathf.Random.Next(0, 800), Mathf.Random.Next(0, 600)), 5, new IntRect(0, 0, 800, 600)));
+            squares.Add(new PlayerSquare(new Vector2f(Mathf.Random.Next(0, windowWidth), Mathf.Random.Next(0, windowHeight)), 
+                MovementSpeed, new IntRect(0, 0, windowWidth, windowHeight)));
         }
         public void SpawnEnemySquary()
         {
-            squares.Add(new EnemySquare(new Vector2f(Mathf.Random.Next(0, 800), Mathf.Random.Next(0, 600)), 5, new IntRect(0, 0, 800, 600)));
+            squares.Add(new EnemySquare(new Vector2f(Mathf.Random.Next(0, windowWidth), Mathf.Random.Next(0, windowHeight)), 
+                MovementSpeed, new IntRect(0, 0, windowWidth, windowHeight)));
+        }
+        public void SpawnBonusSquary()
+        {
+            squares.Add(new BonusSquare(new Vector2f(Mathf.Random.Next(0, windowWidth), Mathf.Random.Next(0, windowHeight)), 
+                MovementSpeed, new IntRect(0, 0, windowWidth, windowHeight)));
         }
         public int GetCount()
         {
             return squares.Count;
+        }
+
+        public void ReturnDefaultSizeEnemySquare()
+        {
+            for (int i = 0; i < squares.Count; i++)
+            {
+                
+                if (squares[i] is EnemySquare)
+                {
+                    squares[i].ReturnDefaultSize();
+                }
+
+            }
         }
     }
 }

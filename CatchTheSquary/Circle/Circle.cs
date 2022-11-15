@@ -1,10 +1,5 @@
-﻿using System;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CatchTheSquary
 {
@@ -57,6 +52,11 @@ namespace CatchTheSquary
         {
             movementTarget.X = Mathf.Random.Next(movementBounds.Left, movementBounds.Left + movementBounds.Width);
             movementTarget.Y = Mathf.Random.Next(movementBounds.Top, movementBounds.Top + movementBounds.Height);
+        }
+
+        public void ReturnDefaultSize()
+        {
+            shape.Radius = DefaultSize;
         }
 
         protected virtual void OnClick() { }

@@ -1,16 +1,16 @@
-﻿using System;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CatchTheSquary
 {
     class CirclesList
     {
+        private static int MovementSpeed = 5;
+        private static int windowWidth = 800;
+        private static int windowHeight = 600;
+
         private List<Circle> circles;
         public bool CircleHasRemoved;
         public Circle RemovedCircle;
@@ -56,16 +56,35 @@ namespace CatchTheSquary
 
         public void SpawnPlayerCircle()
         {
-            circles.Add(new PlayerCircle(new Vector2f(Mathf.Random.Next(0, 800), Mathf.Random.Next(0, 600)), 5, new IntRect(0, 0, 800, 600)));
+            circles.Add(new PlayerCircle(new Vector2f(Mathf.Random.Next(0, windowWidth), Mathf.Random.Next(0, windowHeight)), 
+                MovementSpeed, new IntRect(0, 0, windowWidth, windowHeight)));
         }
         public void SpawnEnemyCircle()
         {
-            circles.Add(new EnemyCircle(new Vector2f(Mathf.Random.Next(0, 800), Mathf.Random.Next(0, 600)), 5, new IntRect(0, 0, 800, 600)));
+            circles.Add(new EnemyCircle(new Vector2f(Mathf.Random.Next(0, windowWidth), Mathf.Random.Next(0, windowHeight)), 
+                MovementSpeed, new IntRect(0, 0, windowWidth, windowHeight)));
         }
-
+        public void SpawnBonusSquary()
+        {
+            circles.Add(new BonusCircle(new Vector2f(Mathf.Random.Next(0, windowWidth), Mathf.Random.Next(0, windowHeight)), 
+                MovementSpeed, new IntRect(0, 0, windowWidth, windowHeight)));
+        }
         public int GetCount()
         {
             return circles.Count;
+        }
+
+        public void ReturnDefaultSizeEnemyCircle()
+        {
+            for (int i = 0; i < circles.Count; i++)
+            {
+
+                if (circles[i] is EnemyCircle)
+                {
+                    circles[i].ReturnDefaultSize();
+                }
+
+            }
         }
     }
 }

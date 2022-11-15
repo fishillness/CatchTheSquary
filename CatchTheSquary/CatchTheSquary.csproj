@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Circle\BonusCircle.cs" />
     <Compile Include="Circle\CirclesList.cs" />
     <Compile Include="Circle\EnemyCircle.cs" />
     <Compile Include="Circle\PlayerCircle.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Circle\Circle.cs" />
+    <Compile Include="Square\BonusSquare.cs" />
     <Compile Include="Square\EnemySquare.cs" />
     <Compile Include="Square\PlayerSquare.cs" />
     <Compile Include="Square\Square.cs" />

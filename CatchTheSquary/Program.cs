@@ -1,23 +1,15 @@
 ﻿using System;
 using SFML.Graphics;
 using SFML.Window;
-using SFML.System;
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CatchTheSquary
 {
     class Program
     {
-
         public static string TypeFigure;
         public static Font mainFont;
         public static string typeWindow;
-
-
+        private static Color Color = new Color(230, 230, 230);
 
         static void Main(string[] args)
         {
@@ -35,7 +27,7 @@ namespace CatchTheSquary
             
             while (window.IsOpen == true)
             {
-                window.Clear(new Color(230, 230, 230));
+                window.Clear(Color);
                 
                 window.DispatchEvents();
                 if (typeWindow == "settings")
