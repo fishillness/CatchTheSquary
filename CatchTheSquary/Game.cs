@@ -8,6 +8,8 @@ namespace CatchTheSquary
     {
         public static int Scores;
         public static bool Islost;
+        private static uint textScoreSize = 16;
+        private static uint textSize = 20;
 
         private Text scoreText;
         private Text loseText;
@@ -23,14 +25,15 @@ namespace CatchTheSquary
             scoreText = new Text();
             scoreText.Font = Program.mainFont;
             scoreText.FillColor = Color.Black;
-            scoreText.CharacterSize = 16;
+            scoreText.CharacterSize = textScoreSize;
             scoreText.Position = new Vector2f(10, 10);
 
             loseText = new Text();
             loseText.Font = Program.mainFont;
             loseText.FillColor = Color.Black;
-            loseText.DisplayedString = "Ты проиграл! Нажми R, чтобы перезапустить игру!";
-            loseText.Position = new Vector2f(20, 290);
+            loseText.CharacterSize = textSize;
+            loseText.DisplayedString = "Ты проиграл! \nНажми \"R\", чтобы перезапустить игру \nНажми \"S\", чтобы перейти в настройки";
+            loseText.Position = new Vector2f(10, 290);
 
             Reset();
         }
